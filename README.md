@@ -1,2 +1,2 @@
 # Microservices-with-Go
-This repository contains Building microservices with go
+This repository contains practice exercise for Building microservices with go
