@@ -8,7 +8,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-type book struct {
+type Book struct {
 	ID     string  `json:"id"`
 	Isbn   string  `json:"isbn"`
 	Title  string  `json:"title"`
@@ -22,24 +22,24 @@ type Author struct {
 
 var books []Book
 
-func getBooks(w http.ResponseWriter, w *http.Request) {
+func getBooks(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(books)
 }
 
-func getBook(w http.ResponseWriter, w *http.Request) {
+func getBook(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func createBook(w http.ResponseWriter, w *http.Request) {
+func createBook(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func updateBook(w http.ResponseWriter, w *http.Request) {
+func updateBook(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func deleteBook(w http.ResponseWriter, w *http.Request) {
+func deleteBook(w http.ResponseWriter, r *http.Request) {
 
 }
 
@@ -52,11 +52,11 @@ func main() {
 	books = append(books, Book{ID: "3", Isbn: "1133", Title: "Book Three", Author: &Author{Firstname: "Jack", Lastname: "Andrew"}})
 	books = append(books, Book{ID: "4", Isbn: "1144", Title: "Book Four", Author: &Author{Firstname: "Tim", Lastname: "C"}})
 
-	r.HandleFunc("/api/books", getBooks).methods("GET")
-	r.HandleFunc("/api/books/{id}", getBook).methods("GET")
-	r.HandleFunc("/api/books", createBook).methods("POST")
-	r.HandleFunc("/api/books/{id}", updateBook).methods("PUT")
-	r.HandleFunc("/api/books/{id}", deleteBook).methods("DELETE")
+	r.HandleFunc("/api/books", getBooks).Methods("GET")
+	r.HandleFunc("/api/books/{id}", getBook).Methods("GET")
+	r.HandleFunc("/api/books", createBook).Methods("POST")
+	r.HandleFunc("/api/books/{id}", updateBook).Methods("PUT")
+	r.HandleFunc("/api/books/{id}", deleteBook).Methods("DELETE")
 
 	log.Fatal(http.ListenAndServe(":8080", r))
 }
